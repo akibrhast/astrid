@@ -5,8 +5,6 @@ import (
 	"go/parser"
 	"testing"
 
-	"golang.org/x/tools/go/loader"
-
 	"strings"
 
 	"go/ast"
@@ -15,9 +13,10 @@ import (
 
 	"go/types"
 
-	"github.com/dave/patsy/builder"
-	"github.com/dave/patsy/vos"
+	"github.com/akibrhast/patsy/builder"
+	"github.com/akibrhast/patsy/vos"
 	"github.com/pkg/errors"
+	"golang.org/x/tools/go/loader"
 )
 
 func TestInvert(t *testing.T) {
@@ -500,7 +499,7 @@ func multi(t *testing.T, tests map[string]string) {
 
 func test(t *testing.T, name, source string) {
 	env := vos.Mock()
-	b, err := builder.New(env, "ns")
+	b, err := builder.New(env, "ns", true)
 	if err != nil {
 		t.Fatalf("Error creating builder in %s: %s", name, err)
 	}
